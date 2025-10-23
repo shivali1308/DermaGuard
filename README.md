@@ -127,23 +127,6 @@ SAFETY_RULES = [
 ]
 ```
 
-## 🌐 Deployment
-
-### Live Demo
-**Visit our deployed application:** [Live Demo Link]
-
-### Deployment Options
-1. **Render.com** (Recommended)
-2. **Railway.app**
-3. **Heroku**
-4. **PythonAnywhere**
-
-### Environment Variables
-```bash
-GROQ_API_KEY=your_groq_api_key_here
-PORT=5006
-```
-
 ## 📊 Performance Metrics
 
 - **Response Time:** 1-2 seconds average
