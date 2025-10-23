@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "**/*.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.py"
+    }
+  ],
+  "env": {
+    "GROQ_API_KEY": "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"
+  }
+}

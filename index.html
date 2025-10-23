@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaGuard AI - UV Protection & Skin Cancer Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-content">
+                <h1>DermaGuard AI</h1>
+                <p class="subtitle">Real-time UV Protection & AI-Powered Skin Health</p>
+                <div class="location-info">
+                    <span id="location-status">Detecting your location...</span>
+                    <button id="refresh-location" class="btn-secondary">Refresh</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- UV Alert Section -->
+        <section id="uv-alert">
+            <div class="alert" id="alert-banner">
+                <div class="alert-content">
+                    <div class="spinner"></div>
+                    <span>Loading UV data for your location...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- UV Map Section -->
+        <section class="card">
+            <div class="card-header">
+                <h2>Live UV Index Map</h2>
+                <div class="uv-legend">
+                    <div class="legend-item"><span class="color low"></span> Low (0-2)</div>
+                    <div class="legend-item"><span class="color moderate"></span> Moderate (3-5)</div>
+                    <div class="legend-item"><span class="color high"></span> High (6-7)</div>
+                    <div class="legend-item"><span class="color very-high"></span> Very High (8-10)</div>
+                    <div class="legend-item"><span class="color extreme"></span> Extreme (11+)</div>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div class="map-info">
+                <p><strong>Your Location:</strong> <span id="current-address">Loading...</span></p>
+                <p><strong>Last Updated:</strong> <span id="last-updated">-</span></p>
+            </div>
+        </section>
+
+        <!-- AI Skin Analysis Section -->
+        <section class="card">
+            <div class="card-header">
+                <h2>AI Skin Cancer Detection</h2>
+                <span class="beta-badge">LIVE AI</span>
+            </div>
+            
+            <div class="upload-area">
+                <div class="upload-icon">🩺</div>
+                <h3>Real AI Skin Cancer Analysis</h3>
+                <p class="upload-hint">Powered by Hugging Face Transformers & DINOv2 Model</p>
+                
+                <div class="analysis-options">
+                    <a href="https://colab.research.google.com/drive/1s0PyhIX9jm6tliOrqcSmpYYg7QU8R5kx" target="_blank" class="demo-btn primary">
+                        Launch AI Skin Analyzer
+                    </a>
+                    <p class="option-note">(Opens Google Colab)</p>
+                </div>
+                
+                <div class="model-info">
+                    <h4>AI Model Details:</h4>
+                    <ul>
+                        <li><strong>Model:</strong> DINOv2 Base Fine-tuned on Skin Disease</li>
+                        <li><strong>Training Data:</strong> 32 skin conditions</li>
+                        <li><strong>Focus:</strong> Melanoma, BCC, SCC detection</li>
+                        <li><strong>Accuracy:</strong> Professional-grade analysis</li>
+                        <li><strong>Technology:</strong> Transformer-based AI</li>
+                    </ul>
+                </div>
+
+                <div class="instructions">
+                    <h4>How to Run the AI:</h4>
+                    <ol>
+                        <li>Click "Launch AI Skin Analyzer" above</li>
+                        <li>Create new notebook in Google Colab</li>
+                        <li>Paste our AI code and run</li>
+                        <li>Get public URL for skin analysis</li>
+                        <li>Upload skin images for real AI diagnosis</li>
+                    </ol>
+                </div>
+                
+                <div class="features-list">
+                    <h4>What our AI detects:</h4>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="risk-high"></span>
+                            <span>Melanoma</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="risk-high"></span>
+                            <span>Basal Cell Carcinoma</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="risk-high"></span>
+                            <span>Squamous Cell Carcinoma</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="risk-medium"></span>
+                            <span>Actinic Keratosis</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="risk-low"></span>
+                            <span>Benign Conditions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISCLAIMER -->
+            <div class="disclaimer">
+                <div class="disclaimer-icon"></div>
+                <div class="disclaimer-content">
+                    <strong>Medical Disclaimer:</strong> This AI tool uses real medical AI models for educational purposes. It is not a substitute for professional medical diagnosis. Always consult healthcare professionals for medical concerns. Model accuracy may vary.
+                </div>
+            </div>
+        </section>
+
+        <!-- Expert Dermatology Chatbot Section -->
+        <section class="card">
+            <div class="card-header">
+                <h2>💬 Expert Dermatology Assistant</h2>
+                <span class="beta-badge">RECOMMENDED</span>
+            </div>
+            
+            <div class="upload-area">
+                <div class="upload-icon"></div>
+                <h3>Medical Expert System - Always Works</h3>
+                <p class="upload-hint">Comprehensive dermatology knowledge with reliable answers</p>
+                
+                <!-- Status Indicator -->
+                <div id="expert-status">
+                    <div class="status-indicator status-offline">
+                        <span class="status-dot"></span>
+                        Expert System: Checking status...
+                    </div>
+                </div>
+                
+                <div class="analysis-options">
+                    <a href="http://localhost:5006" target="_blank" class="demo-btn primary">
+                        Launch Expert Assistant
+                    </a>
+                    <p class="option-note">(Most reliable - No AI model dependencies)</p>
+                </div>
+                
+                <div class="model-info">
+                    <h4>Expert Capabilities:</h4>
+                    <ul>
+                        <li><strong>Skin Rashes:</strong> Causes, treatments, when to see doctor</li>
+                        <li><strong>Itching & Eczema:</strong> Management and relief strategies</li>
+                        <li><strong>Skin Cancer:</strong> Detection signs and prevention</li>
+                        <li><strong>Acne & Sunburn:</strong> Treatment and care guidance</li>
+                        <li><strong>UV Protection:</strong> Complete sun safety information</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- DISCLAIMER -->
+            <div class="disclaimer">
+                <div class="disclaimer-icon"></div>
+                <div class="disclaimer-content">
+                    <strong>Medical Disclaimer:</strong> This expert system provides educational information about skin health. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult healthcare professionals for medical concerns.
+                </div>
+            </div>
+        </section>
+
+       
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Status check functionality
+        async function checkServerStatus(url, elementId) {
+            try {
+                const response = await fetch(`${url}/health`, {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+                updateStatus(elementId, true);
+            } catch (error) {
+                updateStatus(elementId, false);
+            }
+        }
+
+        function updateStatus(elementId, isOnline) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (isOnline) {
+                    element.innerHTML = `
+                        <div class="status-indicator status-online">
+                            <span class="status-dot"></span>
+                            ${elementId.replace('-status', '').replace(/([A-Z])/g, ' $1')}: Online
+                        </div>
+                    `;
+                } else {
+                    element.innerHTML = `
+                        <div class="status-indicator status-offline">
+                            <span class="status-dot"></span>
+                            ${elementId.replace('-status', '').replace(/([A-Z])/g, ' $1')}: Offline - Start server first
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Check status when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                checkServerStatus('http://localhost:5006', 'expert-status');
+                checkServerStatus('http://localhost:5003', 'clinicalbert-status');
+            }, 2000);
+            
+            // Auto-refresh status every 10 seconds
+            setInterval(() => {
+                checkServerStatus('http://localhost:5006', 'expert-status');
+                checkServerStatus('http://localhost:5003', 'clinicalbert-status');
+            }, 10000);
+        });
+    </script>
+</body>
+</html>
